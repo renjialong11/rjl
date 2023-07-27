@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-deploy
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: nginx
+        image: registry.cn-hangzhou.aliyuncs.com/renjialong/nginx:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: nginx
+          containerPort: 80
